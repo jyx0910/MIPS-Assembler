@@ -1,8 +1,20 @@
 # MIPS-Assembler
 
-一个MIPS汇编器。
+课程设计任务，一个MIPS汇编器。没有使用任何词法语法分析器构造程序，不分前后端，完全使用傻瓜式从左到右扫描的算法。
 
-An MIPS Assembler designed for Computer System Design Course.
+汇编过程分为中间代码生成和标识符替换两步。
+
+输出的目标代码文件是Vivado使用的coe文件格式。
+
+命令行参数格式：
+
+    asm.exe \<src.asm\> \<data.coe\> \<code.coe\>
+
+
+总体设计、具体编码和调试：Mikukonai
+
+进制转换算法与编码：Qiu Chuanfei
+
 
 ## 支持指令集
 
