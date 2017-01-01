@@ -8,7 +8,7 @@
 
 命令行参数格式：
 
-    asm.exe \<src.asm\> \<data.coe\> \<code.coe\>
+    asm.exe <src.asm> <data.coe> <code.coe>
 
 
 总体设计、具体编码和调试：Mikukonai
