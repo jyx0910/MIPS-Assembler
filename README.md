@@ -16,6 +16,11 @@
 进制转换算法与编码：Qiu Chuanfei
 
 
+2016.01.02
+
+错误修复。增加四条宏指令：`push $x  pop $x  pushall   popall`
+
+
 ## 支持指令集
 
     支持以下58条指令：
