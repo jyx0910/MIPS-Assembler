@@ -54,7 +54,7 @@ FILE *idTable;
 extern int count;
 
 // 【指令助记符列表、指令总数、指令类型】
-#define INSTRUCTION_NUMBER 58
+#define INSTRUCTION_NUMBER 62
 static char MemonicList[][10] = {
 // R型指令（31）
 	"add",        "addu",       "sub",        "subu",       "and",        "or",         "xor",        "nor",\
@@ -66,7 +66,9 @@ static char MemonicList[][10] = {
 	"lh",         "lhu",        "sb",         "sh",         "lw",         "sw",         "beq",        "bne",\
 	"bgez",       "bgtz",       "blez",       "bltz",       "bgezal",     "bltzal",     "slti",       "sltiu",\
 // J型指令（3）
-	"j",          "jal",        "nop"
+	"j",          "jal",        "nop",\
+// 宏指令
+	"push",       "pop",        "pushall",    "popall"
 };
 static int MemonicType[] = {
 // R型指令
@@ -79,7 +81,9 @@ static int MemonicType[] = {
 	INST_TYPE_IR, INST_TYPE_IR, INST_TYPE_IR, INST_TYPE_IR, INST_TYPE_IR, INST_TYPE_IR, INST_TYPE_I2B,INST_TYPE_I2B,\
 	INST_TYPE_I1B,INST_TYPE_I1B,INST_TYPE_I1B,INST_TYPE_I1B,INST_TYPE_I1B,INST_TYPE_I1B,INST_TYPE_I2, INST_TYPE_I2,\
 // J型指令
-	INST_TYPE_J , INST_TYPE_J , INST_TYPE_J
+	INST_TYPE_J , INST_TYPE_J , INST_TYPE_J,
+// 宏指令
+	INST_TYPE_R1, INST_TYPE_R1, INST_TYPE_R0, INST_TYPE_R0
 };
 static unsigned char OperBinary[] = {
 // R型指令（除[30]eret指令外均为0x00）
@@ -92,7 +96,9 @@ static unsigned char OperBinary[] = {
 	0x21,         0x25,         0x28,         0x29,         0x23,         0x2b,         0x04,         0x05,\
 	0x01,         0x07,         0x06,         0x01,         0x01,         0x01,         0x0a,         0x0b,\
 // J型指令
-	0x02,         0x03,         0x00
+	0x02,         0x03,         0x00,
+// 宏指令
+	0xff,         0xff,         0xff,         0xff
 };
 static unsigned char FuncBinary[] = {
 // R型指令
@@ -105,7 +111,9 @@ static unsigned char FuncBinary[] = {
 	0xff,         0xff,         0xff,         0xff,         0xff,         0xff,         0xff,         0xff,\
 	0xff,         0xff,         0xff,         0xff,         0xff,         0xff,         0xff,         0xff,\
 // J型指令（字段无意义，均为0xff）
-	0xff,         0xff,         0xff
+	0xff,         0xff,         0xff,
+// 宏指令
+	0xff,         0xff,         0xff,         0xff
 };
 
 // 【寄存器名】
